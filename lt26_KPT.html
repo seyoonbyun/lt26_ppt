@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>lt26 KPT - BNI Korea PowerTeam Toolkit</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/theme/white.min.css">
+<style>
+  /* ===== FONT FACE: Paperlogy ===== */
+  @font-face { font-family: 'Paperlogy'; src: url('Gamma 감마_템플릿 세팅 소스/Paperlogy-1.000/Paperlogy-3Light.ttf') format('truetype'); font-weight: 300; font-display: swap; }
+  @font-face { font-family: 'Paperlogy'; src: url('Gamma 감마_템플릿 세팅 소스/Paperlogy-1.000/Paperlogy-4Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+  @font-face { font-family: 'Paperlogy'; src: url('Gamma 감마_템플릿 세팅 소스/Paperlogy-1.000/Paperlogy-5Medium.ttf') format('truetype'); font-weight: 500; font-display: swap; }
+  @font-face { font-family: 'Paperlogy'; src: url('Gamma 감마_템플릿 세팅 소스/Paperlogy-1.000/Paperlogy-6SemiBold.ttf') format('truetype'); font-weight: 600; font-display: swap; }
+  @font-face { font-family: 'Paperlogy'; src: url('Gamma 감마_템플릿 세팅 소스/Paperlogy-1.000/Paperlogy-7Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+  @font-face { font-family: 'Paperlogy'; src: url('Gamma 감마_템플릿 세팅 소스/Paperlogy-1.000/Paperlogy-8ExtraBold.ttf') format('truetype'); font-weight: 800; font-display: swap; }
+  @font-face { font-family: 'Paperlogy'; src: url('Gamma 감마_템플릿 세팅 소스/Paperlogy-1.000/Paperlogy-9Black.ttf') format('truetype'); font-weight: 900; font-display: swap; }
+
+  /* ===== FONT FACE: Pretendard ===== */
+  @font-face { font-family: 'Pretendard'; src: url('Gamma 감마_템플릿 세팅 소스/Pretendard-1.3.9/web/static/woff2/Pretendard-Light.woff2') format('woff2'); font-weight: 300; font-display: swap; }
+  @font-face { font-family: 'Pretendard'; src: url('Gamma 감마_템플릿 세팅 소스/Pretendard-1.3.9/web/static/woff2/Pretendard-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+  @font-face { font-family: 'Pretendard'; src: url('Gamma 감마_템플릿 세팅 소스/Pretendard-1.3.9/web/static/woff2/Pretendard-Medium.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+  @font-face { font-family: 'Pretendard'; src: url('Gamma 감마_템플릿 세팅 소스/Pretendard-1.3.9/web/static/woff2/Pretendard-SemiBold.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+  @font-face { font-family: 'Pretendard'; src: url('Gamma 감마_템플릿 세팅 소스/Pretendard-1.3.9/web/static/woff2/Pretendard-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+  @font-face { font-family: 'Pretendard'; src: url('Gamma 감마_템플릿 세팅 소스/Pretendard-1.3.9/web/static/woff2/Pretendard-ExtraBold.woff2') format('woff2'); font-weight: 800; font-display: swap; }
+  @font-face { font-family: 'Pretendard'; src: url('Gamma 감마_템플릿 세팅 소스/Pretendard-1.3.9/web/static/woff2/Pretendard-Black.woff2') format('woff2'); font-weight: 900; font-display: swap; }
+
+  /* ===== COLOR SYSTEM ===== */
+  :root {
+    --bg-white: #ffffff;
+    --bg-light: #f7f8fa;
+    --bg-dark: #1a1a2e;
+    --text-primary: #222222;
+    --text-secondary: #666666;
+    --text-tertiary: #999999;
+    --border-light: #e8e8e8;
+    --surface-subtle: #f0f1f3;
+    --accent: #cf1f2e;
+    --accent-light: #fef2f3;
+  }
+
+  /* ===== BASE TYPOGRAPHY ===== */
+  .reveal {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 28px;
+    color: var(--text-primary);
+    line-height: 1.6;
+  }
+  .reveal h1, .reveal h2, .reveal h3 {
+    font-family: 'Paperlogy', 'Pretendard', sans-serif;
+    text-transform: none;
+    letter-spacing: -0.03em;
+    line-height: 1.3;
+    margin: 0;
+    color: var(--text-primary);
+  }
+  .reveal h1 { font-size: 2.4em; font-weight: 800; }
+  .reveal h2 { font-size: 1.5em; font-weight: 700; }
+
+  /* ===== SLIDE LAYOUT ===== */
+  .reveal section {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 80px;
+    box-sizing: border-box;
+    height: 100%;
+  }
+
+  /* ===== LOGO ===== */
+  .slide-logo {
+    position: absolute !important;
+    top: 24px;
+    right: 32px;
+    left: auto !important;
+    height: 28px;
+    opacity: 1;
+    z-index: 100;
+    pointer-events: none;
+  }
+
+  /* ===== GRID BACKGROUND ===== */
+  .grid-bg::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url('Gamma 감마_템플릿 세팅 소스/Grid.png') center/cover no-repeat;
+    opacity: 0.25;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .grid-bg > * { position: relative; z-index: 1; }
+
+  /* ===== SECTION LABEL ===== */
+  .section-label {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 0.45em;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  /* ===== SUBTITLE ===== */
+  .subtitle {
+    font-size: 0.6em;
+    color: var(--text-tertiary);
+    font-weight: 400;
+    margin-top: 8px;
+  }
+
+  /* ===== ACCENT LINE ===== */
+  .accent-line {
+    width: 48px;
+    height: 3px;
+    background: var(--accent);
+    margin: 20px auto 0;
+  }
+
+  /* ===== CONTENT AREA ===== */
+  .content {
+    width: 100%;
+    max-width: 960px;
+    margin-top: 36px;
+  }
+
+  /* ===== BOTTOM BAR ===== */
+  .bottom-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--accent);
+  }
+
+  /* ===== SITE NAME ===== */
+  .site-name {
+    position: absolute !important;
+    top: 24px;
+    left: 32px;
+    font-size: 0.42em;
+    color: var(--text-primary);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    z-index: 100;
+    pointer-events: none;
+  }
+
+  /* ===== COPYRIGHT ===== */
+  .copyright {
+    position: absolute !important;
+    bottom: 14px;
+    left: 32px;
+    font-size: 0.38em;
+    color: var(--text-tertiary);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    z-index: 100;
+    pointer-events: none;
+  }
+
+  /* ===== PRESENTER INFO ===== */
+  .presenter-info {
+    position: absolute !important;
+    bottom: 28px;
+    right: 32px;
+    text-align: right;
+    z-index: 100;
+    pointer-events: none;
+  }
+  .presenter-info .presenter-name {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 0.42em;
+    font-weight: 500;
+    color: #888;
+  }
+  .presenter-info .presenter-line {
+    width: 100%;
+    height: 1px;
+    background: #ccc;
+    margin: 4px 0;
+  }
+  .presenter-info .presenter-date {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.38em;
+    font-weight: 300;
+    color: #999;
+  }
+
+  /* ===== PAGE NUMBER ===== */
+  .reveal .slide-number {
+    position: fixed;
+    bottom: 12px;
+    right: 32px;
+    left: auto;
+    top: auto;
+    font-family: 'Pretendard', sans-serif;
+    font-size: 11px;
+    color: var(--text-tertiary);
+    background: none;
+    padding: 0;
+  }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: var(--bg-white);
+    border-radius: 12px;
+    padding: 28px 24px;
+    border: 1px solid var(--border-light);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    text-align: center;
+  }
+  .card-elevated {
+    background: var(--bg-white);
+    border-radius: 12px;
+    padding: 28px 24px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+    text-align: center;
+  }
+  .card-accent {
+    background: var(--accent);
+    color: #ffffff;
+    border-radius: 12px;
+    padding: 28px 24px;
+    text-align: center;
+  }
+
+  /* ===== GRIDS ===== */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; align-items: start; }
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 24px; align-items: start; }
+
+  /* ===== STAT NUMBER ===== */
+  .stat-number {
+    font-family: 'Paperlogy', 'Pretendard', sans-serif;
+    font-size: 2.4em;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1.1;
+  }
+
+  /* ===== STEP NUMBER ===== */
+  .step-num {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.85em;
+    font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* ===== CORRELATION BAR ===== */
+  .corr-row { margin-bottom: 18px; text-align: left; }
+  .corr-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.58em;
+    margin-bottom: 6px;
+  }
+  .corr-bar-bg {
+    background: var(--surface-subtle);
+    border-radius: 4px;
+    height: 14px;
+    width: 100%;
+  }
+  .corr-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: var(--accent);
+  }
+
+  /* ===== FLOW ===== */
+  .flow-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .flow-item {
+    background: var(--bg-light);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 0.55em;
+    font-weight: 700;
+  }
+  .flow-item-active {
+    background: var(--accent);
+    color: #fff;
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 0.55em;
+    font-weight: 700;
+  }
+  .flow-arrow { color: var(--text-tertiary); font-size: 0.85em; }
+
+  /* ===== CTA ===== */
+  .cta-btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    padding: 16px 56px;
+    border-radius: 8px;
+    font-size: 0.85em;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  /* ===== DASHBOARD IMAGE ===== */
+  .dashboard-img {
+    max-width: 90%;
+    max-height: 300px;
+    border-radius: 8px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    border: 1px solid var(--border-light);
+    object-fit: contain;
+  }
+
+  /* ===== SCREENSHOT IMAGE ===== */
+  .screenshot-img {
+    max-width: 85%;
+    max-height: 420px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    border: 1px solid var(--border-light);
+    object-fit: contain;
+  }
+
+  /* ===== PHONE MOCKUP ===== */
+  .phone-mockup {
+    max-height: 340px;
+    border-radius: 20px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+  }
+
+  /* ===== SIGNAL LEGEND ===== */
+  .signal-legend {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    margin-top: 24px;
+  }
+  .signal-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.6em;
+  }
+  .signal-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .signal-red { background: var(--accent); }
+  .signal-green { background: #2e7d32; }
+
+  /* ===== VCP CARD ===== */
+  .vcp-card {
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 28px 20px;
+    text-align: center;
+    position: relative;
+  }
+  .vcp-card-active {
+    background: var(--accent);
+    color: #fff;
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+    padding: 28px 20px;
+    text-align: center;
+  }
+  .vcp-num {
+    position: absolute;
+    top: 12px;
+    left: 16px;
+    font-size: 1.8em;
+    font-weight: 900;
+    color: var(--surface-subtle);
+  }
+  .vcp-card-active .vcp-num { color: rgba(255,255,255,0.2); }
+
+  /* ===== ICON CIRCLE ===== */
+  .icon-circle {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--accent-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 1.4em;
+  }
+  .icon-circle-accent {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 1.4em;
+  }
+
+  /* ===== UTILITIES ===== */
+  .text-accent { color: var(--accent); }
+  .text-tertiary { color: var(--text-tertiary); }
+  .text-secondary { color: var(--text-secondary); }
+  .font-bold { font-weight: 700; }
+
+  /* ===== QUOTE BAR ===== */
+  .quote-bar {
+    border-left: 4px solid var(--accent);
+    background: var(--bg-light);
+    padding: 16px 24px;
+    font-size: 0.65em;
+    text-align: left;
+    border-radius: 0 8px 8px 0;
+    margin-top: 28px;
+  }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ==================== 1. TITLE ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <div class="section-label" style="color:var(--text-tertiary);">BNI KOREA POWERTEAM TOOLKIT</div>
+  <h1 style="font-size:2.6em; line-height:1.2;">
+    <span style="color:var(--text-tertiary);">무작위 리드</span>에서<br>
+    <span style="color:var(--accent);">의도적 리퍼럴</span>로
+  </h1>
+  <div class="accent-line" style="margin:28px auto 0;"></div>
+  <div class="subtitle" style="margin-top:20px;">
+    파워팀 툴킷과 함께하는 체계적 리퍼럴 파트너 영입
+  </div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 2. 왜, 파워팀일까요? ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <h1 style="font-size:2.8em; line-height:1.3;">
+    왜, <span class="text-accent">파워팀</span>일까요?
+  </h1>
+  <div class="accent-line" style="margin:28px auto 0;"></div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 3. BNI GPT 로고 ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <img src="slide_images/slide_03_shape_0.png" style="max-height:180px; object-fit:contain;" alt="BNI Global PowerTeam 15 Years">
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 4. BNI 글로벌 파워 팀 가입 이유 ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <h2 style="font-size:1.4em;">BNI 글로벌 파워 팀에 가입해야 하는 <span class="text-accent">이유</span>는 무엇일까요?</h2>
+  <div class="subtitle">글로벌 협력을 통해 새로운 기회를 열어보세요</div>
+  <div class="accent-line"></div>
+  <div class="content">
+    <div class="grid-4" style="gap:28px; align-items:stretch;">
+      <div class="card" style="padding:32px 20px; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+        <div class="icon-circle" style="color:var(--accent);">&#127760;</div>
+        <div style="font-size:0.85em; font-weight:800;">글로벌<br>네트워킹</div>
+        <div style="width:32px; height:2px; background:var(--accent); margin:12px auto;"></div>
+        <div style="font-size:0.48em; color:var(--text-tertiary); margin-top:8px;">35개국 이상에서 관계를 구축하세요.</div>
+      </div>
+      <div class="card" style="padding:32px 20px; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+        <div class="icon-circle" style="color:var(--accent);">&#128200;</div>
+        <div style="font-size:0.85em; font-weight:800;">사업<br>성장</div>
+        <div style="width:32px; height:2px; background:var(--accent); margin:12px auto;"></div>
+        <div style="font-size:0.48em; color:var(--text-tertiary); margin-top:8px;">양질의 추천을 확보하고 새로운 시장으로 확장하세요.</div>
+      </div>
+      <div class="card" style="padding:32px 20px; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+        <div class="icon-circle" style="color:var(--accent);">&#128161;</div>
+        <div style="font-size:0.85em; font-weight:800;">전문성<br>개발</div>
+        <div style="width:32px; height:2px; background:var(--accent); margin:12px auto;"></div>
+        <div style="font-size:0.48em; color:var(--text-tertiary); margin-top:8px;">국제 비즈니스 역량을 강화하세요.</div>
+      </div>
+      <div class="card" style="padding:32px 20px; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+        <div class="icon-circle" style="color:var(--accent);">&#129309;</div>
+        <div style="font-size:0.85em; font-weight:800;">국경을 넘는<br>협력</div>
+        <div style="width:32px; height:2px; background:var(--accent); margin:12px auto;"></div>
+        <div style="font-size:0.48em; color:var(--text-tertiary); margin-top:8px;">파트너십을 맺고 지식을 공유하십시오.</div>
+      </div>
+    </div>
+  </div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 5. THE OLD WAY ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <div class="section-label">THE OLD WAY</div>
+  <h2>지금까지의 방식: <span class="text-accent">무작위 리드</span></h2>
+  <div class="subtitle">"Leads are Random" — BNI Global Power Team</div>
+  <div class="accent-line"></div>
+  <div class="content">
+    <div class="grid-3">
+      <div class="card" style="padding:32px 24px;">
+        <div style="font-size:1.8em; font-weight:900; color:var(--text-tertiary); margin-bottom:16px;">?</div>
+        <div style="font-size:0.85em; font-weight:700;">불확실한<br>무작위 리드</div>
+      </div>
+      <div class="card" style="padding:32px 24px;">
+        <div style="font-size:1.8em; font-weight:900; color:var(--text-tertiary); margin-bottom:16px;">&darr;</div>
+        <div style="font-size:0.85em; font-weight:700;">낮은 신뢰와<br>일방적 관계</div>
+      </div>
+      <div class="card" style="padding:32px 24px;">
+        <div style="font-size:1.8em; font-weight:900; color:var(--text-tertiary); margin-bottom:16px;">&times;</div>
+        <div style="font-size:0.85em; font-weight:700;">낮은 전환율과<br>성과 저조</div>
+      </div>
+    </div>
+  </div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 6. THE SMART WAY ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <div class="section-label">THE SMART WAY</div>
+  <h2>새로운 방식: <span class="text-accent">의도적 리퍼럴</span></h2>
+  <div class="subtitle">"Referrals are Intentional" — BNI Global Power Team</div>
+  <div class="accent-line"></div>
+  <div class="content">
+    <div class="grid-3">
+      <div class="card-accent" style="padding:32px 24px;">
+        <div style="font-size:1.8em; font-weight:900; opacity:0.7; margin-bottom:16px;">&#9678;</div>
+        <div style="font-size:0.85em; font-weight:700;">타겟이 명확한<br>의도적 리퍼럴</div>
+      </div>
+      <div class="card-accent" style="padding:32px 24px;">
+        <div style="font-size:1.8em; font-weight:900; opacity:0.7; margin-bottom:16px;">&#9673;</div>
+        <div style="font-size:0.85em; font-weight:700;">신뢰의 서클<br>(Trust Circle) 기반</div>
+      </div>
+      <div class="card-accent" style="padding:32px 24px;">
+        <div style="font-size:1.8em; font-weight:900; opacity:0.7; margin-bottom:16px;">&times;2</div>
+        <div style="font-size:0.85em; font-weight:700;">구조적 협력으로<br>기회 배가</div>
+      </div>
+    </div>
+    <div style="margin-top:32px; font-size:0.6em; color:var(--text-secondary);">
+      최소 <strong class="text-accent">4명의 비경쟁 비즈니스</strong>가 협력하여 이상적 고객을 공유하고 성장을 가속화
+    </div>
+  </div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 7. VCP PROCESS ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <h2 style="font-size:1.6em;">어떻게 작동하나요? &mdash; <span class="text-accent">VCP PROCESS</span></h2>
+  <div class="accent-line"></div>
+  <div class="content">
+    <div class="grid-3" style="gap:28px;">
+      <div class="vcp-card" style="padding:32px 24px;">
+        <div class="vcp-num">01</div>
+        <div class="icon-circle">&#128065;</div>
+        <div style="font-size:1.1em; font-weight:800;">Visibility</div>
+        <div style="font-size:0.55em; color:var(--accent); margin-top:4px;">가시성</div>
+        <div style="font-size:0.55em; color:var(--text-secondary); margin-top:16px;">나를 알린다</div>
+        <div style="font-size:0.48em; color:var(--text-tertiary); margin-top:12px; line-height:1.6;">
+          &#10003; 챕터 미팅 참여<br>&#10003; 1-to-1 미팅
+        </div>
+      </div>
+      <div class="vcp-card" style="padding:32px 24px;">
+        <div class="vcp-num">02</div>
+        <div class="icon-circle">&#129309;</div>
+        <div style="font-size:1.1em; font-weight:800;">Credibility</div>
+        <div style="font-size:0.55em; color:var(--accent); margin-top:4px;">신뢰성</div>
+        <div style="font-size:0.55em; color:var(--text-secondary); margin-top:16px;">신뢰를 쌓는다</div>
+        <div style="font-size:0.48em; color:var(--text-tertiary); margin-top:12px; line-height:1.6;">
+          &#10003; 일관된 참여<br>&#10003; 약속 이행
+        </div>
+      </div>
+      <div class="vcp-card-active" style="padding:32px 24px; position:relative;">
+        <div class="vcp-num" style="position:absolute; top:12px; left:16px; font-size:1.8em; font-weight:900; color:rgba(255,255,255,0.2);">03</div>
+        <div class="icon-circle-accent">&#128202;</div>
+        <div style="font-size:1.1em; font-weight:800;">Profitability</div>
+        <div style="font-size:0.55em; opacity:0.8; margin-top:4px;">수익성</div>
+        <div style="font-size:0.55em; opacity:0.9; margin-top:16px;">의도적 레퍼럴이 시작된다</div>
+        <div style="font-size:0.48em; opacity:0.8; margin-top:12px; line-height:1.6;">
+          &#10003; 비즈니스 성장<br>&#10003; 지속적 성과
+        </div>
+      </div>
+    </div>
+    <div class="quote-bar" style="text-align:center; margin-top:28px;">
+      "레퍼럴은 우연히 생기지 않습니다. <strong class="text-accent">VCP 과정</strong>을 통해 <strong>의도적으로</strong> 만들어집니다."
+    </div>
+  </div>
+  <div class="site-name" style="font-size:0.38em; color:var(--text-tertiary);">BNI GLOBAL POWER TEAM PRESENTATION</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 8. BNI KPT 로고 ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <img src="slide_images/slide_09_shape_0.png" style="max-height:200px; object-fit:contain;" alt="BNI KPT Korea Power Team 5 Years">
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 10. SINCE 2021 ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <div style="font-size:0.5em; color:var(--text-tertiary); letter-spacing:0.2em; margin-bottom:16px;">KOREA POWER TEAM</div>
+  <h1 style="font-size:3em; color:var(--text-tertiary);">SINCE <span class="text-accent">2021</span></h1>
+  <div class="accent-line" style="margin:28px auto 0;"></div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 11. 2025 ver. My PowerTeam ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <img src="slide_images/slide_11_shape_3.png" style="max-height:340px; object-fit:contain; border-radius:12px; box-shadow:0 8px 32px rgba(0,0,0,0.12);" alt="My PowerTeam That's Perfect For You">
+  <div style="font-size:1.2em; color:var(--accent); font-weight:700; letter-spacing:0.15em; margin-top:24px;">2025 ver.</div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 11. 상위 25% vs 하위 25% ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <div class="section-label">DATA COMPARISON</div>
+  <h2>상위 25% vs 하위 25%</h2>
+  <div class="subtitle">의도적 리퍼럴을 실천하는 챕터 vs 그렇지 않은 챕터</div>
+  <div class="accent-line"></div>
+  <div class="content">
+    <div class="grid-3">
+      <div class="card-elevated" style="padding:32px;">
+        <div class="stat-number">+24%</div>
+        <div style="font-size:0.7em; font-weight:700; margin-top:12px;">챕터 규모</div>
+        <div style="font-size:0.5em; color:var(--text-tertiary); margin-top:4px;">44.3명 vs 35.6명</div>
+      </div>
+      <div class="card-elevated" style="padding:32px;">
+        <div class="stat-number">+19%</div>
+        <div style="font-size:0.7em; font-weight:700; margin-top:12px;">멤버 유지율</div>
+        <div style="font-size:0.5em; color:var(--text-tertiary); margin-top:4px;">74.4% vs 62.4%</div>
+      </div>
+      <div class="card-elevated" style="padding:32px;">
+        <div class="stat-number">+30%</div>
+        <div style="font-size:0.7em; font-weight:700; margin-top:12px;">방문자 활동</div>
+        <div style="font-size:0.5em; color:var(--text-tertiary); margin-top:4px;">1.63명 vs 1.25명</div>
+      </div>
+    </div>
+  </div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 14. TOP 챕터의 성장 공식 ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <div class="section-label">SUCCESS MODELS</div>
+  <h2>TOP 챕터의 성장 공식</h2>
+  <div class="subtitle">RPI 2.0 이상 + 참가율 89% 이상</div>
+  <div class="accent-line"></div>
+  <div class="content">
+    <div class="grid-3">
+      <div class="card-elevated" style="padding:28px;">
+        <div style="font-size:0.85em; font-weight:800;">Crown</div>
+        <div style="font-size:2em; font-weight:900; color:var(--accent); margin:16px 0;">2.79</div>
+        <div style="font-size:0.55em; color:var(--text-tertiary);">참가율 97.9%</div>
+      </div>
+      <div class="card-elevated" style="padding:28px;">
+        <div style="font-size:0.85em; font-weight:800;">Smart</div>
+        <div style="font-size:2em; font-weight:900; color:var(--accent); margin:16px 0;">2.63</div>
+        <div style="font-size:0.55em; color:var(--text-tertiary);">참가율 89.3%</div>
+      </div>
+      <div class="card-elevated" style="padding:28px;">
+        <div style="font-size:0.85em; font-weight:800;">Synergy</div>
+        <div style="font-size:2em; font-weight:900; color:var(--accent); margin:16px 0;">2.35</div>
+        <div style="font-size:0.55em; color:var(--text-tertiary);">참가율 98.7%</div>
+      </div>
+    </div>
+    <div class="flow-container" style="margin-top:28px;">
+      <div class="flow-item-active">높은 RPI</div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-item">참가율&uarr;</div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-item">규모&uarr;</div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-item">유지율&uarr;</div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-item-active">지속 성장</div>
+    </div>
+  </div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 15. RPI 상관관계 상세 ==================== -->
+<section class="grid-bg" data-background-color="#f7f8fa">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <div class="section-label">STATISTICAL EVIDENCE</div>
+  <h2>RPI와 챕터 건강도의 <span class="text-accent">강력한 상관관계</span></h2>
+  <div class="subtitle">"RPI는 챕터 건강도의 핵심 지표입니다" &middot; 통계적으로 검증된 4가지 핵심 지표 (p &lt; 0.05)</div>
+  <div class="accent-line"></div>
+  <div class="content" style="max-width:800px;">
+    <div class="corr-row">
+      <div class="corr-label">
+        <span><strong>참가율</strong> <span class="text-tertiary" style="font-size:0.85em;">Strong Positive</span></span>
+        <span><strong class="text-accent" style="font-size:1.3em;">+0.602</strong> <span class="text-tertiary" style="font-size:0.8em;">p &lt; 0.001</span></span>
+      </div>
+      <div class="corr-bar-bg"><div class="corr-bar-fill" style="width:60.2%;"></div></div>
+    </div>
+    <div class="corr-row">
+      <div class="corr-label">
+        <span><strong>챕터 규모</strong> <span class="text-tertiary" style="font-size:0.85em;">Moderate Positive</span></span>
+        <span><strong class="text-secondary" style="font-size:1.3em;">+0.355</strong> <span class="text-tertiary" style="font-size:0.8em;">p = 0.0012</span></span>
+      </div>
+      <div class="corr-bar-bg"><div class="corr-bar-fill" style="width:35.5%; opacity:0.7;"></div></div>
+    </div>
+    <div class="corr-row">
+      <div class="corr-label">
+        <span><strong>멤버 유지율</strong> <span class="text-tertiary" style="font-size:0.85em;">Moderate Positive</span></span>
+        <span><strong class="text-secondary" style="font-size:1.3em;">+0.318</strong> <span class="text-tertiary" style="font-size:0.8em;">p = 0.0041</span></span>
+      </div>
+      <div class="corr-bar-bg"><div class="corr-bar-fill" style="width:31.8%; opacity:0.7;"></div></div>
+    </div>
+    <div class="corr-row" style="margin-bottom:0;">
+      <div class="corr-label">
+        <span><strong>방문자 활동</strong> <span class="text-tertiary" style="font-size:0.85em;">Weak Positive</span></span>
+        <span><strong class="text-tertiary" style="font-size:1.3em;">+0.231</strong> <span class="text-tertiary" style="font-size:0.8em;">p = 0.0392</span></span>
+      </div>
+      <div class="corr-bar-bg"><div class="corr-bar-fill" style="width:23.1%; opacity:0.5;"></div></div>
+    </div>
+    <div style="margin-top:24px; font-size:0.5em; color:var(--text-secondary); font-style:italic;">
+      "RPI는 단순한 숫자가 아닙니다. RPI가 높을수록 챕터가 더 크고, 더 안정적이며, 더 매력적임이 데이터로 증명되었습니다."
+    </div>
+  </div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 16. 글로벌 파워팀 — 디지털 툴킷 3단계 ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <div class="section-label">GLOBAL CONTEXT</div>
+  <h2>글로벌 파워팀의 철학을 <span class="text-accent">디지털 툴킷</span>으로</h2>
+  <div class="accent-line"></div>
+  <div class="content">
+    <div class="grid-3">
+      <div class="card" style="padding:28px;">
+        <div style="font-size:0.5em; color:var(--text-tertiary); margin-bottom:8px;">1단계</div>
+        <div style="font-size:0.8em; font-weight:700;">비즈니스 협업<br>역량진단</div>
+      </div>
+      <div class="card" style="padding:28px;">
+        <div style="font-size:0.5em; color:var(--text-tertiary); margin-bottom:8px;">2단계</div>
+        <div style="font-size:0.8em; font-weight:700;">핵심 고객<br>프로필 매핑</div>
+      </div>
+      <div class="card-accent" style="padding:28px;">
+        <div style="font-size:0.5em; opacity:0.7; margin-bottom:8px;">3단계 &middot; 오늘의 주제</div>
+        <div style="font-size:0.8em; font-weight:700;">RPS<br>리퍼럴 파트너 스코어보드</div>
+      </div>
+    </div>
+    <div style="margin-top:28px; font-size:0.55em; color:var(--text-secondary); font-style:italic;">
+      "Referrals are <strong>Intentional</strong>, not Random." — BNI Global Power Team
+    </div>
+  </div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 17. 파워팀 툴킷과 함께 ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <div class="section-label">SOLUTION</div>
+  <h1 style="font-size:2.2em; line-height:1.25;">
+    체계적 리퍼럴 파트너 영입,<br>
+    <span style="color:var(--accent);">파워팀 툴킷</span>과 함께
+  </h1>
+  <div class="accent-line" style="margin:28px auto 0;"></div>
+  <div class="content" style="margin-top:40px;">
+    <div class="flow-container" style="flex-wrap:wrap; gap:12px;">
+      <div class="flow-item">V&middot;C&middot;P 관계 측정</div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-item">RPI 점수 산출</div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-item">챕터 건강도 확인</div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-item-active">지속 성장</div>
+    </div>
+    <div style="margin-top:36px; font-size:0.55em; color:var(--text-tertiary);">
+      회원 평균 ROI: 회원비의 2배 이상
+    </div>
+  </div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 18. RPS가 강력한 3가지 이유 ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <div class="section-label">KEY INSIGHT</div>
+  <h2 style="font-size:1.5em;">
+    RPS가 강력한 <span style="color:var(--accent);">3가지 이유</span>
+  </h2>
+  <div class="accent-line" style="margin:24px auto 0;"></div>
+  <div class="content" style="margin-top:40px;">
+    <div class="grid-3" style="gap:28px;">
+      <div class="card-elevated" style="padding:36px 24px;">
+        <div style="font-size:0.5em; font-weight:700; color:var(--accent); margin-bottom:16px;">01</div>
+        <div class="font-bold" style="font-size:0.85em;">관계를<br>측정 가능하게</div>
+      </div>
+      <div class="card-elevated" style="padding:36px 24px;">
+        <div style="font-size:0.5em; font-weight:700; color:var(--accent); margin-bottom:16px;">02</div>
+        <div class="font-bold" style="font-size:0.85em;">전략적<br>파트너십 설계</div>
+      </div>
+      <div class="card-elevated" style="padding:36px 24px;">
+        <div style="font-size:0.5em; font-weight:700; color:var(--accent); margin-bottom:16px;">03</div>
+        <div class="font-bold" style="font-size:0.85em;">챕터 전체<br>선순환 성장</div>
+      </div>
+    </div>
+  </div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 19. 이렇게 사용하시면 됩니다 ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <div class="section-label">HOW TO USE</div>
+  <h2>이렇게 사용하시면 됩니다</h2>
+  <div class="subtitle">복잡하지 않습니다. 3분이면 충분합니다</div>
+  <div class="accent-line"></div>
+  <div class="content">
+    <div class="grid-3" style="gap:32px;">
+      <div class="card-elevated" style="padding:36px 24px;">
+        <div class="step-num" style="margin:0 auto 20px;">1</div>
+        <div style="font-size:0.9em; font-weight:700;">로그인</div>
+        <div style="font-size:0.5em; color:var(--text-tertiary); margin-top:12px;">
+          powerteam-bnikorea.com<br>접속 후 간편 로그인
+        </div>
+      </div>
+      <div class="card-elevated" style="padding:36px 24px;">
+        <div class="step-num" style="margin:0 auto 20px;">2</div>
+        <div style="font-size:0.9em; font-weight:700;">정보 입력</div>
+        <div style="font-size:0.5em; color:var(--text-tertiary); margin-top:12px;">
+          파트너 정보 입력<br><strong class="text-accent">'수익 단계' 체크 필수</strong>
+        </div>
+      </div>
+      <div class="card-elevated" style="padding:36px 24px;">
+        <div class="step-num" style="margin:0 auto 20px;">3</div>
+        <div style="font-size:0.9em; font-weight:700;">제출하기</div>
+        <div style="font-size:0.5em; color:var(--text-tertiary); margin-top:12px;">
+          버튼 한 번으로 끝!<br>챕터 RPI에 즉시 반영
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 20. 파워팀 툴킷 3 Steps 폰 목업 ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <div class="section-label">POWERTEAM TOOLKIT</div>
+  <h2>파워팀 툴킷 <span class="text-accent">3 Steps</span></h2>
+  <div class="accent-line"></div>
+  <div class="content" style="margin-top:24px;">
+    <img src="slide_images/slide_20_shape_0.png" class="screenshot-img" alt="파워팀 툴킷 3 Steps 화면">
+  </div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 21. RPS 로그인 화면 ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <div class="section-label">REFERRAL PARTNER SCOREBOARD</div>
+  <h2><span class="text-accent">RPS</span> 로그인</h2>
+  <div class="subtitle">QR코드 스캔 &middot; BNI Connect 이메일 + 4자리 비밀번호</div>
+  <div class="accent-line"></div>
+  <div class="content" style="margin-top:16px;">
+    <img src="슬라이드 교체/슬라이드 21.png" class="screenshot-img" style="max-height:400px;" alt="RPS QR코드 및 로그인 화면">
+  </div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 22. RPS 전체 입력 폼 ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <div class="section-label">RPS SCOREBOARD</div>
+  <h2>스코어보드 <span class="text-accent">입력 화면</span></h2>
+  <div class="accent-line"></div>
+  <div class="content" style="margin-top:16px;">
+    <img src="slide_images/slide_22_shape_1.png" class="screenshot-img" style="max-height:440px;" alt="RPS 스코어보드 입력 화면">
+  </div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 21. 나의 파워팀 정보 입력 ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <div class="section-label">STEP 1</div>
+  <h2>나의 <span class="text-accent">파워팀 정보</span> 입력</h2>
+  <div class="subtitle">전문분야와 핵심 고객층을 정확히 입력하세요</div>
+  <div class="accent-line"></div>
+  <div class="content" style="margin-top:16px;">
+    <img src="슬라이드 교체/1.png" class="screenshot-img" alt="나의 파워팀 정보 입력">
+  </div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 25. 리퍼럴 파트너 정보 입력 안내 ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <div class="section-label">STEP 2</div>
+  <h2>나의 <span class="text-accent">리퍼럴 파트너</span> 정보 입력</h2>
+  <div class="subtitle">파트너명 &middot; 전문분야 &middot; 관계 단계 — 3가지를 입력합니다</div>
+  <div class="accent-line"></div>
+  <div class="content" style="margin-top:16px;">
+    <img src="슬라이드 교체/2.png" class="screenshot-img" alt="리퍼럴 파트너 정보 입력 안내">
+  </div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 26. 입력 ①: 전문분야 ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <div class="section-label">INPUT ①</div>
+  <h2><span class="text-accent">레드라이트</span> ON !</h2>
+  <div style="font-size:0.6em; color:var(--text-secondary); margin-top:8px;">영입하고 싶은 파트너의 전문분야를 입력합니다.</div>
+  <div class="accent-line"></div>
+  <div class="content" style="margin-top:16px;">
+    <img src="슬라이드 교체/3.png" class="screenshot-img" alt="전문분야 입력">
+  </div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 27. 스코어보드: 레드라이트 ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <div class="section-label">RPI VIEWER</div>
+  <h2>전문분야만 입력하면 <span class="text-accent">레드라이트</span></h2>
+  <div class="accent-line"></div>
+  <div class="content" style="margin-top:16px;">
+    <img src="슬라이드 교체/4.png" class="screenshot-img" alt="레드라이트 스코어보드">
+  </div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 28. 입력 ②: 파트너명 ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <div class="section-label">INPUT ②</div>
+  <h2><span style="color:#2e7d32;">그린라이트</span>를 켜자!</h2>
+  <div style="font-size:0.6em; color:var(--text-secondary); margin-top:8px;">희망 전문분야의 파트너명을 입력하면 레드라이트가 그린라이트로 전환!</div>
+  <div class="accent-line"></div>
+  <div class="content" style="margin-top:16px;">
+    <img src="슬라이드 교체/5.png" class="screenshot-img" alt="파트너명 입력">
+  </div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 29. 스코어보드: 그린라이트로 변화 ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <div class="section-label">RPI VIEWER</div>
+  <h2>파트너명까지 입력하면 <span style="color:#2e7d32;">그린라이트</span></h2>
+  <div class="accent-line"></div>
+  <div class="content" style="margin-top:16px;">
+    <img src="슬라이드 교체/4.png" class="screenshot-img" alt="그린라이트 스코어보드">
+  </div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 30. 입력 ③: 관계 단계 ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <div class="section-label">INPUT ③</div>
+  <h2>마지막으로 <span class="text-accent">관계 단계</span>를 선택합니다</h2>
+  <div class="accent-line"></div>
+  <div class="content" style="margin-top:16px;">
+    <img src="슬라이드 교체/7.png" class="screenshot-img" alt="관계 단계 선택">
+  </div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 31. 달성률 확인 ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <div class="section-label">ACHIEVEMENT</div>
+  <h2>나의 <span class="text-accent">달성률</span> 확인</h2>
+  <div class="subtitle">V &middot; C &middot; P 단계별 파트너 수와 RPI 확인</div>
+  <div class="accent-line"></div>
+  <div class="content" style="margin-top:16px;">
+    <img src="슬라이드 교체/8.png" class="screenshot-img" alt="달성률 화면">
+  </div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 29. 참 쉽죠? ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <img src="slide_images/slide_31_shape_1.png" style="max-height:360px; object-fit:contain; border-radius:12px;" alt="참 쉽죠?">
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 32. 레드라이트에서 그린라이트로 ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <div class="section-label">HOW IT WORKS</div>
+  <h2><span class="text-accent">레드라이트</span>에서 <span style="color:#2e7d32;">그린라이트</span>로</h2>
+  <div class="subtitle" style="margin-top:4px;">리퍼럴 파트너 영입 현황을 한눈에</div>
+  <div style="margin-top:16px; font-size:0.65em; color:var(--text-secondary); line-height:1.6;">
+    나의 입력 현황과 챕터 멤버 전원의 현황을 한 화면에서 비교할 수 있습니다.<br>
+    <strong class="text-accent">누가, 어떤 전문분야의 파트너를 찾고 있는지</strong> 서로 확인하고 함께 협력하세요.
+  </div>
+  <div class="accent-line" style="margin:4px auto 0;"></div>
+  <div class="content" style="margin-top:2px;">
+    <img src="스크린샷 2026-02-27 155022.png" class="dashboard-img" alt="파워팀 툴킷 대시보드">
+    <div class="signal-legend" style="margin-top:12px;">
+      <div class="signal-item">
+        <div class="signal-dot signal-red"></div>
+        <div>
+          <div style="font-weight:700; color:var(--text-primary);">레드라이트</div>
+          <div style="font-size:0.85em; color:var(--text-tertiary); margin-top:2px;">전문분야만 입력 — 아직 영입 전</div>
+        </div>
+      </div>
+      <div class="signal-item">
+        <div class="signal-dot signal-green"></div>
+        <div>
+          <div style="font-weight:700; color:var(--text-primary);">그린라이트</div>
+          <div style="font-size:0.85em; color:var(--text-tertiary); margin-top:2px;">파트너 성함 입력 — 실제 영입 완료</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 33. 건강한 챕터가 성공합니다 ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <div class="section-label">CHAPTER HEALTH</div>
+  <h2 style="font-size:1.5em;">건강한 챕터가 <span style="color:var(--accent);">성공</span>합니다</h2>
+  <div class="subtitle" style="margin-top:4px;">RPI 높은 챕터 = 건강한 챕터 = 지속 가능한 성장</div>
+  <div class="accent-line" style="margin:24px auto 0;"></div>
+  <div class="content" style="margin-top:28px;">
+    <div class="grid-3" style="gap:24px;">
+      <div class="card-elevated" style="padding:24px;">
+        <div style="font-size:0.45em; color:var(--accent); font-weight:700; margin-bottom:8px;">BEST MODEL</div>
+        <div style="font-size:0.85em; font-weight:800;">Crown</div>
+        <div style="font-size:1.6em; font-weight:900; color:var(--accent); margin:8px 0;">2.79</div>
+        <div style="font-size:0.45em; color:var(--text-tertiary);">참가율 97.9% &middot; 45명</div>
+      </div>
+      <div class="card-elevated" style="padding:24px;">
+        <div style="font-size:0.45em; color:var(--accent); font-weight:700; margin-bottom:8px;">HIGH RETENTION</div>
+        <div style="font-size:0.85em; font-weight:800;">Smart</div>
+        <div style="font-size:1.6em; font-weight:900; color:var(--accent); margin:8px 0;">2.63</div>
+        <div style="font-size:0.45em; color:var(--text-tertiary);">참가율 89.3%</div>
+      </div>
+      <div class="card-elevated" style="padding:24px;">
+        <div style="font-size:0.45em; color:var(--accent); font-weight:700; margin-bottom:8px;">CONSISTENCY</div>
+        <div style="font-size:0.85em; font-weight:800;">Honors</div>
+        <div style="font-size:1.6em; font-weight:900; color:var(--accent); margin:8px 0;">2.67</div>
+        <div style="font-size:0.45em; color:var(--text-tertiary);">참가율 96.7% &middot; Very High</div>
+      </div>
+    </div>
+    <div class="grid-3" style="gap:20px; margin-top:24px;">
+      <div style="background:var(--surface-subtle); border-radius:8px; padding:16px;">
+        <div style="font-size:0.5em; color:var(--text-tertiary); margin-bottom:6px;">ACTION 1</div>
+        <div style="font-size:0.6em; font-weight:700;">지금 파워팀 툴킷 로그인</div>
+      </div>
+      <div style="background:var(--surface-subtle); border-radius:8px; padding:16px;">
+        <div style="font-size:0.5em; color:var(--text-tertiary); margin-bottom:6px;">ACTION 2</div>
+        <div style="font-size:0.6em; font-weight:700;">매주 RPS 입력 및 관리</div>
+      </div>
+      <div style="background:var(--surface-subtle); border-radius:8px; padding:16px;">
+        <div style="font-size:0.5em; color:var(--text-tertiary); margin-bottom:6px;">ACTION 3</div>
+        <div style="font-size:0.6em; font-weight:700;">AI 분석으로 건강도 UP</div>
+      </div>
+    </div>
+    <div style="margin-top:28px; font-size:0.6em; font-weight:700;">
+      당신의 챕터도 <span style="color:var(--accent);">TOP 25%</span>에 진입할 수 있습니다
+    </div>
+  </div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== 34. CLOSING ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <h1 style="font-size:2.4em; line-height:1.25;">
+    <span style="color:var(--text-tertiary);">무작위</span>에서<br>
+    <span style="color:var(--accent);">의도적</span>으로,<br>
+    파워팀 툴킷과<br>
+    함께 하세요
+  </h1>
+  <div class="accent-line" style="margin:36px auto 0;"></div>
+  <div class="content" style="margin-top:48px;">
+    <div class="cta-btn">powerteam-bnikorea.com</div>
+  </div>
+  <div style="margin-top:48px; color:var(--text-tertiary); font-size:0.38em;">
+    Givers Gain &nbsp;&middot;&nbsp; BNI Korea
+  </div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+<!-- ==================== Q&A. 감사합니다 ==================== -->
+<section class="grid-bg">
+  <img src="Gamma 감마_템플릿 세팅 소스/BNI로고_transparent.png" class="slide-logo" alt="BNI">
+  <div class="section-label">Q &amp; A</div>
+  <h1 style="font-size:3.2em; font-weight:900;">감사합니다</h1>
+  <div class="accent-line"></div>
+  <div class="subtitle" style="margin-top:20px;">질문이 있으시면 말씀해주세요</div>
+  <div style="margin-top:48px; font-size:0.55em; color:var(--text-tertiary);">
+    powerteam-bnikorea.com
+  </div>
+  <div class="site-name">My PowerTeam</div>
+  <div class="copyright">COPYRIGHT© BNI K. JOY CO., LTD. ALL RIGHTS RESERVED.</div>
+  <div class="presenter-info"><div class="presenter-name">JOY | Byun,SeYoon</div><div class="presenter-line"></div><div class="presenter-date">2026. 03. 02</div></div>
+  <div class="bottom-bar"></div>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.min.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    width: 1280,
+    height: 720,
+    margin: 0.04,
+    transition: 'fade',
+    transitionSpeed: 'default',
+    backgroundTransition: 'fade',
+    center: false,
+    controls: true,
+    progress: true,
+    history: true,
+  });
+</script>
+</body>
+</html>
